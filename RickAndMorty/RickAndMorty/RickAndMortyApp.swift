@@ -1,17 +1,11 @@
-//
-//  RickAndMortyApp.swift
-//  RickAndMorty
-//
-//  Created by Omar Ali on 23/2/24.
-//
-
 import SwiftUI
+import RickAndMortyService
 
 @main
 struct RickAndMortyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: .init(charactersLoader: RickAndMortyService.Service()))
         }
     }
 }

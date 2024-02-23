@@ -1,8 +1,31 @@
-//
-//  CharactersListViewModel.swift
-//  RickAndMorty
-//
-//  Created by Omar Ali on 23/2/24.
-//
-
+import Combine
 import Foundation
+
+
+protocol CharactersLoader {
+    func getCharacters() async throws  -> [Character]
+}
+
+public class CharactersListViewModel: ObservableObject {
+    
+    @Published var charcters = [Character]()
+    private let charactersLoader: CharactersLoader
+    
+    init(charactersLoader: CharactersLoader) {
+        self.charactersLoader = charactersLoader
+    }
+    
+    func getCharacters() {
+        Task {
+            do {
+                let charachters = try await self.charactersLoader.getCharacters().map { Character(id: $0.id, name: $0.name) }
+                DispatchQueue.main.async { [weak self] in
+                    self?.charcters = charachters
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+}
+

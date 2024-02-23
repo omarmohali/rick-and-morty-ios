@@ -1,8 +1,13 @@
-//
-//  RickAndMortyService+CharactersLoader.swift
-//  RickAndMorty
-//
-//  Created by Omar Ali on 23/2/24.
-//
+import RickAndMortyService
 
-import Foundation
+extension RickAndMortyService.Service: CharactersLoader {
+    func getCharacters() async throws -> [Character] {
+        return try await self.getCharacters().map(Character.init)
+    }
+}
+
+private extension Character {
+    init(_ dto: RickAndMortyService.Character) {
+        self.init(id: dto.id, name: dto.name)
+    }
+}

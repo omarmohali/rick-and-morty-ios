@@ -1,8 +1,7 @@
-//
-//  Character.swift
-//  RickAndMorty
-//
-//  Created by Omar Ali on 23/2/24.
-//
-
 import Foundation
+
+struct Character: Identifiable, Hashable {
+    let id: Int
+    let name: String
+}
+
