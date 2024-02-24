@@ -2,13 +2,13 @@ import Combine
 import Foundation
 
 
-protocol CharactersLoader {
+public protocol CharactersLoader {
     func getCharacters() async throws  -> [Character]
 }
 
 public class CharactersListViewModel: ObservableObject {
     
-    @Published var charcters = [Character]()
+    @Published private(set) var charcters = [Character]()
     private let charactersLoader: CharactersLoader
     
     init(charactersLoader: CharactersLoader) {

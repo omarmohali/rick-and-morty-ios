@@ -6,9 +6,8 @@
 //
 
 import SwiftUI
-import RickAndMortyService
 
-struct ContentView: View {
+struct CharactersListScreen: View {
     
     @ObservedObject private var viewModel: CharactersListViewModel
     
