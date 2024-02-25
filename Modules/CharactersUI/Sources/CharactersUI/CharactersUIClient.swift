@@ -10,7 +10,9 @@ public class CharactersUIClient {
     
     public func charactersList() -> some View {
         CharactersListScreen(
-            viewModel: .init(charactersLoader: self.charactersLoader)
+            viewModel: .init(
+                charactersLoader: self.charactersLoader
+            )
         )
     }
     

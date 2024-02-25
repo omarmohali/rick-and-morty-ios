@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1312DB662B8B50AC001C3B55 /* CharactersUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1312DB652B8B50AC001C3B55 /* CharactersUI */; };
 		1347BAA92B892DC2001E4138 /* RickAndMortyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347BAA82B892DC2001E4138 /* RickAndMortyApp.swift */; };
 		1347BAAD2B892DC4001E4138 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1347BAAC2B892DC4001E4138 /* Assets.xcassets */; };
 		1347BAB02B892DC4001E4138 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1347BAAF2B892DC4001E4138 /* Preview Assets.xcassets */; };
@@ -15,6 +16,7 @@
 		1347BAC62B892DC4001E4138 /* RickAndMortyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347BAC52B892DC4001E4138 /* RickAndMortyUITestsLaunchTests.swift */; };
 		1347BAD62B8938B4001E4138 /* RickAndMortyService in Frameworks */ = {isa = PBXBuildFile; productRef = 1347BAD52B8938B4001E4138 /* RickAndMortyService */; };
 		1347BAE32B895EE6001E4138 /* CharactersUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1347BAE22B895EE6001E4138 /* CharactersUI */; };
+		13B9AEC22B8B51790058ABDB /* RickAndMortyService+CharactersLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347BAE52B895F4C001E4138 /* RickAndMortyService+CharactersLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +47,6 @@
 		1347BAC32B892DC4001E4138 /* RickAndMortyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMortyUITests.swift; sourceTree = "<group>"; };
 		1347BAC52B892DC4001E4138 /* RickAndMortyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMortyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1347BAD32B893838001E4138 /* RickAndMortyService */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = RickAndMortyService; path = ../Modules/RickAndMortyService; sourceTree = "<group>"; };
-		1347BAE02B895D89001E4138 /* CharactersUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CharactersUI; path = ../Modules/CharactersUI; sourceTree = "<group>"; };
 		1347BAE52B895F4C001E4138 /* RickAndMortyService+CharactersLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RickAndMortyService+CharactersLoader.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -55,6 +56,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1347BAE32B895EE6001E4138 /* CharactersUI in Frameworks */,
+				1312DB662B8B50AC001C3B55 /* CharactersUI in Frameworks */,
 				1347BAD62B8938B4001E4138 /* RickAndMortyService in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,7 +81,6 @@
 		1347BA9C2B892DC2001E4138 = {
 			isa = PBXGroup;
 			children = (
-				1347BAE02B895D89001E4138 /* CharactersUI */,
 				1347BAD32B893838001E4138 /* RickAndMortyService */,
 				1347BAA72B892DC2001E4138 /* RickAndMorty */,
 				1347BAB82B892DC4001E4138 /* RickAndMortyTests */,
@@ -161,6 +162,7 @@
 			packageProductDependencies = (
 				1347BAD52B8938B4001E4138 /* RickAndMortyService */,
 				1347BAE22B895EE6001E4138 /* CharactersUI */,
+				1312DB652B8B50AC001C3B55 /* CharactersUI */,
 			);
 			productName = RickAndMorty;
 			productReference = 1347BAA52B892DC2001E4138 /* RickAndMorty.app */;
@@ -281,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1347BAA92B892DC2001E4138 /* RickAndMortyApp.swift in Sources */,
+				13B9AEC22B8B51790058ABDB /* RickAndMortyService+CharactersLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,6 +628,10 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1312DB652B8B50AC001C3B55 /* CharactersUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CharactersUI;
+		};
 		1347BAD52B8938B4001E4138 /* RickAndMortyService */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RickAndMortyService;

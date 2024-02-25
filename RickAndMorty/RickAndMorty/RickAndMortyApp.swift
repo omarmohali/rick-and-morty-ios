@@ -5,7 +5,7 @@ import CharactersUI
 @main
 struct RickAndMortyApp: App {
     
-    private let charactersClient = CharactersUIClient()
+    private let charactersClient = CharactersUIClient(charactersLoader: RickAndMortyService.Service())
     
     var body: some Scene {
         WindowGroup {

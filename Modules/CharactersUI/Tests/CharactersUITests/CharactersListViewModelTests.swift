@@ -6,15 +6,24 @@ final class CharactersUITests: XCTestCase {
     
     var cancellables = Set<AnyCancellable>()
     
-    func testtGetCharacters() async throws {
+    func testInitialStateIsLoading() async throws {
         
         let charactersLoader = CharactersLoaderMock()
         let sut = CharactersListViewModel(charactersLoader: charactersLoader)
-        let expectedCharacters = [Character(id: 1, name: "Rick")]
-        charactersLoader.getCharactersResult = expectedCharacters
+        
+        XCTAssertEqual(sut.state, .loading)
+        
+    }
+    
+    func testGetCharactersFailure() async throws {
+        
+        let charactersLoader = CharactersLoaderMock()
+        let sut = CharactersListViewModel(charactersLoader: charactersLoader)
+        let expectedError = "Failed to Get Characters"
+        charactersLoader.getCharactersResult = .failure(expectedError)
         
         let exp = XCTestExpectation(description: "Wait for charactersLoader")
-        sut.$charcters.sink { _ in
+        sut.$state.sink { _ in
             exp.fulfill()
         }
         .store(in: &cancellables)
@@ -22,20 +31,48 @@ final class CharactersUITests: XCTestCase {
         sut.getCharacters()
         
         await fulfillment(of: [exp])
-        XCTAssertEqual(sut.charcters, expectedCharacters)
+        XCTAssertEqual(sut.state, .error)
+        
+    }
+    
+    func testGetCharactersSuccess() async throws {
+        
+        let charactersLoader = CharactersLoaderMock()
+        let sut = CharactersListViewModel(charactersLoader: charactersLoader)
+        let expectedCharacters = [Character(id: 1, name: "Rick")]
+        charactersLoader.getCharactersResult = .success(expectedCharacters)
+        
+        let exp = XCTestExpectation(description: "Wait for charactersLoader")
+        sut.$state.sink { _ in
+            exp.fulfill()
+        }
+        .store(in: &cancellables)
+        
+        sut.getCharacters()
+        
+        await fulfillment(of: [exp])
+        XCTAssertEqual(sut.state, .loaded(expectedCharacters))
         
     }
 }
 
 class CharactersLoaderMock: CharactersLoader {
     
-    var getCharactersResult: [Character]?
+    var getCharactersResult: Result<[Character], Error>?
     func getCharacters() async throws -> [Character] {
         guard let result = self.getCharactersResult else {
-            XCTFail("Did not set characters")
+            XCTFail("Did not set getCharactersResult")
             return []
         }
         
-        return result
+        switch result {
+        case let .success(characters):
+            return characters
+        case let .failure(error):
+            throw error
+        }
+        
     }
 }
+
+extension String: Error { }

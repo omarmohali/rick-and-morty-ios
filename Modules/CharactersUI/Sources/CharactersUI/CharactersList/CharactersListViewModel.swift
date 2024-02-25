@@ -6,9 +6,15 @@ public protocol CharactersLoader {
     func getCharacters() async throws  -> [Character]
 }
 
-public class CharactersListViewModel: ObservableObject {
+class CharactersListViewModel: ObservableObject {
     
-    @Published private(set) var charcters = [Character]()
+    public enum State: Equatable {
+        case loading
+        case loaded([Character])
+        case error
+    }
+    
+    @Published private(set) var state: State = .loading
     private let charactersLoader: CharactersLoader
     
     init(charactersLoader: CharactersLoader) {
@@ -16,14 +22,17 @@ public class CharactersListViewModel: ObservableObject {
     }
     
     func getCharacters() {
+        self.state = .loading
         Task {
             do {
                 let charachters = try await self.charactersLoader.getCharacters().map { Character(id: $0.id, name: $0.name) }
                 DispatchQueue.main.async { [weak self] in
-                    self?.charcters = charachters
+                    self?.state = .loaded(charachters)
                 }
             } catch {
-                print(error)
+                DispatchQueue.main.async { [weak self] in
+                    self?.state = .error
+                }
             }
         }
     }

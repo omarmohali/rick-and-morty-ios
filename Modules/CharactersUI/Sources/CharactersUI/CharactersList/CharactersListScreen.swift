@@ -16,14 +16,28 @@ struct CharactersListScreen: View {
     }
     
     var body: some View {
-        
-        List {
-            ForEach(viewModel.charcters, id: \.self) { character in
-                Text(character.name)
+        ZStack {
+            switch viewModel.state {
+            case let .loaded(characters):
+                self.charactersList(characters)
+            case .loading:
+                Text("Loading")
+                
+            case .error:
+                Text("Error")
+                
             }
         }
         .onAppear {
             viewModel.getCharacters()
+        }
+    }
+    
+    func charactersList(_ characters: [Character]) -> some View {
+        List {
+            ForEach(characters, id: \.self) { character in
+                Text(character.name)
+            }
         }
     }
 }
