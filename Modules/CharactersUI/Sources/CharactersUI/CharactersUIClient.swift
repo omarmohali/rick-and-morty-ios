@@ -8,11 +8,12 @@ public class CharactersUIClient {
         self.charactersLoader = charactersLoader
     }
     
-    public func charactersList() -> some View {
+    public func charactersList(didSelectCharacter: ((Character) -> Void)? = nil) -> some View {
         CharactersListScreen(
             viewModel: .init(
                 charactersLoader: self.charactersLoader
-            )
+            ),
+            didSelectCharacter: didSelectCharacter
         )
     }
     

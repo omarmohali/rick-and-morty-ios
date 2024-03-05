@@ -7,16 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1312DB662B8B50AC001C3B55 /* CharactersUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1312DB652B8B50AC001C3B55 /* CharactersUI */; };
+		130E92E02B9494AC000074A7 /* CharactersUI in Frameworks */ = {isa = PBXBuildFile; productRef = 130E92DF2B9494AC000074A7 /* CharactersUI */; };
+		130E92E32B9494B7000074A7 /* RickAndMortyService in Frameworks */ = {isa = PBXBuildFile; productRef = 130E92E22B9494B7000074A7 /* RickAndMortyService */; };
 		1347BAA92B892DC2001E4138 /* RickAndMortyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347BAA82B892DC2001E4138 /* RickAndMortyApp.swift */; };
 		1347BAAD2B892DC4001E4138 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1347BAAC2B892DC4001E4138 /* Assets.xcassets */; };
 		1347BAB02B892DC4001E4138 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1347BAAF2B892DC4001E4138 /* Preview Assets.xcassets */; };
 		1347BABA2B892DC4001E4138 /* RickAndMortyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347BAB92B892DC4001E4138 /* RickAndMortyTests.swift */; };
 		1347BAC42B892DC4001E4138 /* RickAndMortyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347BAC32B892DC4001E4138 /* RickAndMortyUITests.swift */; };
 		1347BAC62B892DC4001E4138 /* RickAndMortyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347BAC52B892DC4001E4138 /* RickAndMortyUITestsLaunchTests.swift */; };
-		1347BAE32B895EE6001E4138 /* CharactersUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1347BAE22B895EE6001E4138 /* CharactersUI */; };
 		13B9AEC22B8B51790058ABDB /* RickAndMortyService+CharactersLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347BAE52B895F4C001E4138 /* RickAndMortyService+CharactersLoader.swift */; };
-		13B9AEC52B8B52B20058ABDB /* RickAndMortyService in Frameworks */ = {isa = PBXBuildFile; productRef = 13B9AEC42B8B52B20058ABDB /* RickAndMortyService */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,9 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1347BAE32B895EE6001E4138 /* CharactersUI in Frameworks */,
-				13B9AEC52B8B52B20058ABDB /* RickAndMortyService in Frameworks */,
-				1312DB662B8B50AC001C3B55 /* CharactersUI in Frameworks */,
+				130E92E02B9494AC000074A7 /* CharactersUI in Frameworks */,
+				130E92E32B9494B7000074A7 /* RickAndMortyService in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,9 +156,8 @@
 			);
 			name = RickAndMorty;
 			packageProductDependencies = (
-				1347BAE22B895EE6001E4138 /* CharactersUI */,
-				1312DB652B8B50AC001C3B55 /* CharactersUI */,
-				13B9AEC42B8B52B20058ABDB /* RickAndMortyService */,
+				130E92DF2B9494AC000074A7 /* CharactersUI */,
+				130E92E22B9494B7000074A7 /* RickAndMortyService */,
 			);
 			productName = RickAndMorty;
 			productReference = 1347BAA52B892DC2001E4138 /* RickAndMorty.app */;
@@ -235,8 +232,8 @@
 			);
 			mainGroup = 1347BA9C2B892DC2001E4138;
 			packageReferences = (
-				1347BAE12B895EE6001E4138 /* XCLocalSwiftPackageReference "../Modules/CharactersUI" */,
-				13B9AEC32B8B52B20058ABDB /* XCLocalSwiftPackageReference "../Modules/RickAndMortyService" */,
+				130E92DE2B9494AC000074A7 /* XCLocalSwiftPackageReference "../Modules/CharactersUI" */,
+				130E92E12B9494B7000074A7 /* XCLocalSwiftPackageReference "../Modules/RickAndMortyService" */,
 			);
 			productRefGroup = 1347BAA62B892DC2001E4138 /* Products */;
 			projectDirPath = "";
@@ -615,26 +612,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		1347BAE12B895EE6001E4138 /* XCLocalSwiftPackageReference "../Modules/CharactersUI" */ = {
+		130E92DE2B9494AC000074A7 /* XCLocalSwiftPackageReference "../Modules/CharactersUI" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../Modules/CharactersUI;
 		};
-		13B9AEC32B8B52B20058ABDB /* XCLocalSwiftPackageReference "../Modules/RickAndMortyService" */ = {
+		130E92E12B9494B7000074A7 /* XCLocalSwiftPackageReference "../Modules/RickAndMortyService" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../Modules/RickAndMortyService;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1312DB652B8B50AC001C3B55 /* CharactersUI */ = {
+		130E92DF2B9494AC000074A7 /* CharactersUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CharactersUI;
 		};
-		1347BAE22B895EE6001E4138 /* CharactersUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CharactersUI;
-		};
-		13B9AEC42B8B52B20058ABDB /* RickAndMortyService */ = {
+		130E92E22B9494B7000074A7 /* RickAndMortyService */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RickAndMortyService;
 		};

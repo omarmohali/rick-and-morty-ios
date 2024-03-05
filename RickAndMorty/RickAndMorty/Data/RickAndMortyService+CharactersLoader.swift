@@ -9,6 +9,11 @@ extension RickAndMortyService.Service: CharactersLoader {
 
 private extension CharactersUI.Character {
     init(_ dto: RickAndMortyService.Character) {
-        self.init(id: dto.id, name: dto.name)
+        self.init(
+            id: dto.id, 
+            name: dto.name, 
+            species: dto.species, 
+            image: dto.image
+        )
     }
 }

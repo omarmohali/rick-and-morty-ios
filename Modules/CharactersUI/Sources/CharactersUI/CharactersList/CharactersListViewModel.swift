@@ -25,11 +25,12 @@ class CharactersListViewModel: ObservableObject {
         self.state = .loading
         Task {
             do {
-                let charachters = try await self.charactersLoader.getCharacters().map { Character(id: $0.id, name: $0.name) }
+                let characters = try await self.charactersLoader.getCharacters()
                 DispatchQueue.main.async { [weak self] in
-                    self?.state = .loaded(charachters)
+                    self?.state = .loaded(characters)
                 }
             } catch {
+                print(error)
                 DispatchQueue.main.async { [weak self] in
                     self?.state = .error
                 }
@@ -38,3 +39,16 @@ class CharactersListViewModel: ObservableObject {
     }
 }
 
+#if DEBUG
+class CharactersLoaderMock: CharactersLoader {
+    func getCharacters() async throws -> [Character] {
+        return [
+            .init(id: 0, name: "Rick Sanchez", species: "Human", image: .init(string: "www.image.com")!)
+        ]
+    }
+}
+
+extension CharactersListViewModel {
+    static let mock = CharactersListViewModel(charactersLoader: CharactersLoaderMock())
+}
+#endif

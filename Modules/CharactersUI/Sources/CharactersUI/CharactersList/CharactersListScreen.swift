@@ -10,9 +10,14 @@ import SwiftUI
 struct CharactersListScreen: View {
     
     @ObservedObject private var viewModel: CharactersListViewModel
+    private let didSelectCharacter: ((Character) -> Void)?
     
-    init(viewModel: CharactersListViewModel) {
+    init(
+        viewModel: CharactersListViewModel,
+        didSelectCharacter: ((Character) -> Void)? = nil
+    ) {
         self.viewModel = viewModel
+        self.didSelectCharacter = didSelectCharacter
     }
     
     var body: some View {
@@ -36,12 +41,15 @@ struct CharactersListScreen: View {
     func charactersList(_ characters: [Character]) -> some View {
         List {
             ForEach(characters, id: \.self) { character in
-                Text(character.name)
+                CharacterView(character: character)
+                    .onTapGesture {
+                        self.didSelectCharacter?(character)
+                    }
             }
         }
     }
 }
 
-//#Preview {
-//    ContentView()
-//}
+#Preview {
+    CharactersListScreen(viewModel: .mock)
+}

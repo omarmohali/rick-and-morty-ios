@@ -39,7 +39,7 @@ final class CharactersUITests: XCTestCase {
         
         let charactersLoader = CharactersLoaderMock()
         let sut = CharactersListViewModel(charactersLoader: charactersLoader)
-        let expectedCharacters = [Character(id: 1, name: "Rick")]
+        let expectedCharacters = [Character.mockCharacter()]
         charactersLoader.getCharactersResult = .success(expectedCharacters)
         
         let exp = XCTestExpectation(description: "Wait for charactersLoader")
@@ -76,3 +76,19 @@ class CharactersLoaderMock: CharactersLoader {
 }
 
 extension String: Error { }
+
+extension Character {
+    static func mockCharacter(
+        id: Int = 0,
+        name: String = "Rick Sanchez",
+        species: String = "Human",
+        image: URL = .init(string: "www.image.com")!
+    ) -> Character {
+        .init(
+            id: id,
+            name: name,
+            species: species,
+            image: image
+        )
+    }
+}
