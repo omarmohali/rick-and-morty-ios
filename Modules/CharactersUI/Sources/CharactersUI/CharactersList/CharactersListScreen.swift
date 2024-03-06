@@ -22,23 +22,43 @@ struct CharactersListScreen: View {
     
     var body: some View {
         ZStack {
-            switch viewModel.state {
-            case let .loaded(characters):
-                self.charactersList(characters)
+            switch viewModel.dataState {
             case .loading:
-                Text("Loading")
-                
+                ProgressView()
+            case let .loaded(characters):
+                CharactersListView(
+                    characters: characters,
+                    didSelectCharacter: self.didSelectCharacter
+                )
             case .error:
-                Text("Error")
-                
+                Button("Retry") {
+                    viewModel.getCharacters()
+                }
             }
+            
         }
+        .searchable(text: $viewModel.searchText)
         .onAppear {
             viewModel.getCharacters()
         }
+        .onChange(of: viewModel.searchText) { searchText in
+            self.viewModel.getCharacters()
+        }
+    }
+}
+
+
+private struct CharactersListView: View {
+    
+    let characters: [Character]
+    private let didSelectCharacter: ((Character) -> Void)?
+    
+    init(characters: [Character], didSelectCharacter: ((Character) -> Void)? = nil) {
+        self.characters = characters
+        self.didSelectCharacter = didSelectCharacter
     }
     
-    func charactersList(_ characters: [Character]) -> some View {
+    var body: some View {
         List {
             ForEach(characters, id: \.self) { character in
                 CharacterView(character: character)

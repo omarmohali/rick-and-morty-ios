@@ -3,18 +3,20 @@ import Foundation
 
 
 public protocol CharactersLoader {
-    func getCharacters() async throws  -> [Character]
+    func getCharacters(nameFilter: String?) async throws  -> [Character]
 }
 
 class CharactersListViewModel: ObservableObject {
     
-    public enum State: Equatable {
+    enum DataState {
         case loading
         case loaded([Character])
         case error
     }
     
-    @Published private(set) var state: State = .loading
+    @Published private(set) var dataState: DataState = .loading
+    @Published var searchText = ""
+    
     private let charactersLoader: CharactersLoader
     
     init(charactersLoader: CharactersLoader) {
@@ -22,17 +24,17 @@ class CharactersListViewModel: ObservableObject {
     }
     
     func getCharacters() {
-        self.state = .loading
+        self.dataState = .loading
         Task {
             do {
-                let characters = try await self.charactersLoader.getCharacters()
+                let characters = try await self.charactersLoader.getCharacters(nameFilter: searchText)
                 DispatchQueue.main.async { [weak self] in
-                    self?.state = .loaded(characters)
+                    self?.dataState = .loaded(characters)
                 }
             } catch {
                 print(error)
                 DispatchQueue.main.async { [weak self] in
-                    self?.state = .error
+                    self?.dataState = .error
                 }
             }
         }
@@ -41,7 +43,7 @@ class CharactersListViewModel: ObservableObject {
 
 #if DEBUG
 class CharactersLoaderMock: CharactersLoader {
-    func getCharacters() async throws -> [Character] {
+    func getCharacters(nameFilter: String?) async throws -> [Character] {
         return [
             .init(id: 0, name: "Rick Sanchez", species: "Human", image: .init(string: "www.image.com")!)
         ]

@@ -19,15 +19,18 @@ struct RickAndMortyApp: App {
     }
 }
 
-struct BeerBuddyView: View {
+struct OfflineCharactersLoader: CharactersLoader {
     
-    private let character: CharactersUI.Character
+    private let characters: [CharactersUI.Character] = [
+        .init(id: 1, name: "Rick Sanchez", species: "Human", image: .init(string: "www.hello.com")!),
+        .init(id: 1, name: "Omar Mohamed", species: "Human", image: .init(string: "www.hello.com")!),
+        .init(id: 1, name: "Aly Mohamed", species: "Human", image: .init(string: "www.hello.com")!),
+        .init(id: 1, name: "Nermine Zaki", species: "Human", image: .init(string: "www.hello.com")!),
+        .init(id: 1, name: "Mohamed Ali", species: "Human", image: .init(string: "www.hello.com")!)
+    ]
     
-    init(character: CharactersUI.Character) {
-        self.character = character
-    }
-    
-    var body: some View {
-        Text(character.name)
+    func getCharacters(nameFilter: String?) async throws -> [CharactersUI.Character] {
+        try await Task.sleep(nanoseconds: 2 * 1_000_000_000)
+        return self.characters
     }
 }
