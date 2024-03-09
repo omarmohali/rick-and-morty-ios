@@ -7,20 +7,20 @@ struct CharacterView: View {
     private let imageDimension: CGFloat = 100
     var body: some View {
         HStack {
-//            AsyncImage(url: character.image) { phase in
-//                switch phase {
-//                case let .success(image):
-//                    image
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: self.imageDimension, height: self.imageDimension)
-//                        .cornerRadius(self.imageDimension / 2)
-//                    
-//                default:
-//                    Text("Hello")
-//                }
-//                
-//            }
+            AsyncImage(url: character.image) { phase in
+                switch phase {
+                case let .success(image):
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: self.imageDimension, height: self.imageDimension)
+                        .cornerRadius(self.imageDimension / 2)
+                    
+                default:
+                    Text("Hello")
+                }
+                
+            }
             
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
@@ -35,8 +35,6 @@ struct CharacterView: View {
             }
             
             Spacer()
-            
-            Image(systemName: "chevron.right")
         }
         .padding()
     }

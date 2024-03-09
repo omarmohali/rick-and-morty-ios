@@ -10,14 +10,14 @@ import SwiftUI
 struct CharactersListScreen: View {
     
     @ObservedObject private var viewModel: CharactersListViewModel
-    private let didSelectCharacter: ((Character) -> Void)?
+    private let viewForCharacter: (Character) -> AnyView
     
     init(
         viewModel: CharactersListViewModel,
-        didSelectCharacter: ((Character) -> Void)? = nil
+        viewForCharacter: @escaping (Character) -> AnyView
     ) {
         self.viewModel = viewModel
-        self.didSelectCharacter = didSelectCharacter
+        self.viewForCharacter = viewForCharacter
     }
     
     var body: some View {
@@ -28,7 +28,7 @@ struct CharactersListScreen: View {
             case let .loaded(characters):
                 CharactersListView(
                     characters: characters,
-                    didSelectCharacter: self.didSelectCharacter
+                    viewForCharacter: self.viewForCharacter
                 )
             case .error:
                 Button("Retry") {
@@ -51,25 +51,21 @@ struct CharactersListScreen: View {
 private struct CharactersListView: View {
     
     let characters: [Character]
-    private let didSelectCharacter: ((Character) -> Void)?
+    private let viewForCharacter: (Character) -> AnyView
     
-    init(characters: [Character], didSelectCharacter: ((Character) -> Void)? = nil) {
+    init(characters: [Character], viewForCharacter: @escaping (Character) -> AnyView) {
         self.characters = characters
-        self.didSelectCharacter = didSelectCharacter
+        self.viewForCharacter = viewForCharacter
     }
     
     var body: some View {
+        
         List {
             ForEach(characters, id: \.self) { character in
-                CharacterView(character: character)
-                    .onTapGesture {
-                        self.didSelectCharacter?(character)
-                    }
+                NavigationLink(destination: viewForCharacter(character)) {
+                    CharacterView(character: character)
+                }
             }
         }
     }
-}
-
-#Preview {
-    CharactersListScreen(viewModel: .mock)
 }

@@ -8,13 +8,14 @@ public class CharactersUIClient {
         self.charactersLoader = charactersLoader
     }
     
-    public func charactersList(didSelectCharacter: ((Character) -> Void)? = nil) -> some View {
+    public func charactersList(viewForCharacter: @escaping (Character) -> AnyView) -> some View {
         CharactersListScreen(
             viewModel: .init(
                 charactersLoader: self.charactersLoader
             ),
-            didSelectCharacter: didSelectCharacter
+            viewForCharacter: viewForCharacter
         )
+        .navigationTitle("Characters")
     }
     
 }
