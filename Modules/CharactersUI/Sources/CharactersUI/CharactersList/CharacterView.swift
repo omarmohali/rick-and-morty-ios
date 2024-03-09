@@ -8,16 +8,18 @@ struct CharacterView: View {
     var body: some View {
         HStack {
             AsyncImage(url: character.image) { phase in
-                switch phase {
-                case let .success(image):
+                
+                if let image = phase.image {
                     image
                         .resizable()
                         .scaledToFit()
                         .frame(width: self.imageDimension, height: self.imageDimension)
                         .cornerRadius(self.imageDimension / 2)
-                    
-                default:
-                    Text("Hello")
+                } else if let error = phase.error {
+                    Text("Error")
+                } else {
+                    ProgressView()
+                        .frame(width: self.imageDimension, height: self.imageDimension)
                 }
                 
             }
