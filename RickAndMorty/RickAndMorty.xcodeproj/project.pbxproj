@@ -15,6 +15,7 @@
 		1347BABA2B892DC4001E4138 /* RickAndMortyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347BAB92B892DC4001E4138 /* RickAndMortyTests.swift */; };
 		1347BAC42B892DC4001E4138 /* RickAndMortyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347BAC32B892DC4001E4138 /* RickAndMortyUITests.swift */; };
 		1347BAC62B892DC4001E4138 /* RickAndMortyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347BAC52B892DC4001E4138 /* RickAndMortyUITestsLaunchTests.swift */; };
+		13562DF62B9CDBC30004BA3E /* BeerBuddyUI in Frameworks */ = {isa = PBXBuildFile; productRef = 13562DF52B9CDBC30004BA3E /* BeerBuddyUI */; };
 		13B9AEC22B8B51790058ABDB /* RickAndMortyService+CharactersLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1347BAE52B895F4C001E4138 /* RickAndMortyService+CharactersLoader.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 			files = (
 				130E92E02B9494AC000074A7 /* CharactersUI in Frameworks */,
 				130E92E32B9494B7000074A7 /* RickAndMortyService in Frameworks */,
+				13562DF62B9CDBC30004BA3E /* BeerBuddyUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +160,7 @@
 			packageProductDependencies = (
 				130E92DF2B9494AC000074A7 /* CharactersUI */,
 				130E92E22B9494B7000074A7 /* RickAndMortyService */,
+				13562DF52B9CDBC30004BA3E /* BeerBuddyUI */,
 			);
 			productName = RickAndMorty;
 			productReference = 1347BAA52B892DC2001E4138 /* RickAndMorty.app */;
@@ -234,6 +237,7 @@
 			packageReferences = (
 				130E92DE2B9494AC000074A7 /* XCLocalSwiftPackageReference "../Modules/CharactersUI" */,
 				130E92E12B9494B7000074A7 /* XCLocalSwiftPackageReference "../Modules/RickAndMortyService" */,
+				13562DF42B9CDBC30004BA3E /* XCLocalSwiftPackageReference "../Modules/BeerBuddyUI" */,
 			);
 			productRefGroup = 1347BAA62B892DC2001E4138 /* Products */;
 			projectDirPath = "";
@@ -620,6 +624,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../Modules/RickAndMortyService;
 		};
+		13562DF42B9CDBC30004BA3E /* XCLocalSwiftPackageReference "../Modules/BeerBuddyUI" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Modules/BeerBuddyUI;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -630,6 +638,10 @@
 		130E92E22B9494B7000074A7 /* RickAndMortyService */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RickAndMortyService;
+		};
+		13562DF52B9CDBC30004BA3E /* BeerBuddyUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BeerBuddyUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

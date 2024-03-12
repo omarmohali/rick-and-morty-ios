@@ -2,13 +2,13 @@ import RickAndMortyService
 import CharactersUI
 
 extension RickAndMortyService.Service: CharactersLoader {
-    public func getCharacters(nameFilter: String?) async throws -> [CharactersUI.Character] {
-        return try await self.getCharacters(nameFilter: nameFilter).map(Character.init)
+    public func getCharacters(nameFilter: String?) async throws -> [CharactersUICharacter] {
+        return try await self.getCharacters(nameFilter: nameFilter).map(CharactersUICharacter.init)
     }
 }
 
-private extension CharactersUI.Character {
-    init(_ dto: RickAndMortyService.Character) {
+private extension CharactersUICharacter {
+    init(_ dto: CharacterDTO) {
         self.init(
             id: dto.id,
             name: dto.name,

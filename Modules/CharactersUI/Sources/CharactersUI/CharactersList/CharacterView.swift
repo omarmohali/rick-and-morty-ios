@@ -16,7 +16,10 @@ struct CharacterView: View {
                         .frame(width: self.imageDimension, height: self.imageDimension)
                         .cornerRadius(self.imageDimension / 2)
                 } else if let error = phase.error {
-                    Text("Error")
+                    Circle()
+                        .background(Color.secondary)
+                        .frame(width: self.imageDimension, height: self.imageDimension)
+                        .cornerRadius(self.imageDimension / 2)
                 } else {
                     ProgressView()
                         .frame(width: self.imageDimension, height: self.imageDimension)
