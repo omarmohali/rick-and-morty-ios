@@ -1,19 +1,5 @@
 import Foundation
 
-public class Service {
-    
-    private let baseURL: URL
-    private let session: URLSession
-    public init(
-        session: URLSession = .shared,
-        baseURL: URL
-    ) {
-        self.session = session
-        self.baseURL = baseURL
-    }
-    
-}
-
 public extension Service {
     
     struct CharacterFilters {
@@ -37,9 +23,18 @@ public extension Service {
         public let type: String?
         public let gender: Gender?
         
+        public init(name: String?, status: Status?, species: String?, type: String?, gender: Gender?) {
+            self.name = name
+            self.status = status
+            self.species = species
+            self.type = type
+            self.gender = gender
+        }
+        
+        
         public static let noFilters = CharacterFilters(
             name: nil,
-            status: nil, 
+            status: nil,
             species: nil,
             type: nil,
             gender: nil
