@@ -23,7 +23,13 @@ public extension Service {
         public let type: String?
         public let gender: Gender?
         
-        public init(name: String?, status: Status?, species: String?, type: String?, gender: Gender?) {
+        public init(
+            name: String? = nil,
+            status: Status? = nil,
+            species: String? = nil,
+            type: String? = nil,
+            gender: Gender? = nil
+        ) {
             self.name = name
             self.status = status
             self.species = species

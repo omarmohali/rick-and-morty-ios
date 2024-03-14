@@ -10,13 +10,21 @@ public typealias CharacterDTO = RickAndMortyService.Character
 @main
 struct RickAndMortyApp: App {
     
-    private let charactersClient = CharactersUIClient(
-        charactersLoader: RickAndMortyService.Service(
-            baseURL: URL(string: "https://rickandmortyapi.com/api/character")!
-        )
-    )
+    private let service: Service
     
-    private let beerBuddyClient = BeerBuddyUIClient(beerBuddyFinder: MockFinder())
+    private let charactersClient: CharactersUIClient
+    private let beerBuddyClient: BeerBuddyUIClient
+    
+    init() {
+        let service = Service(baseURL: URL(string: "https://rickandmortyapi.com/api")!)
+        self.service = service
+        self.charactersClient = CharactersUIClient(
+            charactersLoader: service
+        )
+        self.beerBuddyClient = BeerBuddyUIClient(
+            beerBuddyFinder: AppBeerBuddyFinder(service: service)
+        )
+    }
     
     var body: some Scene {
         WindowGroup {
@@ -67,13 +75,32 @@ extension BeerBuddyUICharacter {
 }
 
 
-struct MockFinder: BeerBuddyFinder {
-    func getPerfectBuddy(for character: BeerBuddyUI.Character) async -> BeerBuddyUI.Character {
-        .init(
-            id: 2,
-            name: "Morty Smith",
-            species: "Human",
-            image: .init(string: "https://rickandmortyapi.com/api/character/avatar/2.jpeg")!
+class AppBeerBuddyFinder: BeerBuddyFinder {
+    
+    private let service:  Service
+    
+    init(service: Service) {
+        self.service = service
+    }
+    
+    func getPerfectBuddy(for character: BeerBuddyUICharacter) async -> BeerBuddyInfo {
+        return .init(
+            character: .init(
+                id: 1,
+                name: "Rick",
+                species: "Human",
+                image: URL(string: "www.any-url.com")!
+            ),
+            buddy: .init(
+                id: 2,
+                name: "Morty",
+                species: "Human",
+                image: URL(string: "www.any-url.com")!
+            ),
+            numberOfCommonEpisodes: 1,
+            location: "Earth",
+            firstMetDate: Date(),
+            lastMetDate: Date()
         )
     }
 }

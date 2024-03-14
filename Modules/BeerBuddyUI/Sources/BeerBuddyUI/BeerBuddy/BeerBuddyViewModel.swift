@@ -1,8 +1,33 @@
 import Combine
 import Foundation
 
+public struct BeerBuddyInfo {
+    public let character: Character
+    public let buddy: Character
+    public let numberOfCommonEpisodes: Int
+    public let location: String
+    public let firstMetDate: Date
+    public let lastMetDate: Date
+    
+    public init(
+        character: Character,
+        buddy: Character,
+        numberOfCommonEpisodes: Int,
+        location: String,
+        firstMetDate: Date,
+        lastMetDate: Date
+    ) {
+        self.character = character
+        self.buddy = buddy
+        self.numberOfCommonEpisodes = numberOfCommonEpisodes
+        self.location = location
+        self.firstMetDate = firstMetDate
+        self.lastMetDate = lastMetDate
+    }
+}
+
 public protocol BeerBuddyFinder {
-    func getPerfectBuddy(for character: Character) async -> Character
+    func getPerfectBuddy(for character: Character) async -> BeerBuddyInfo
 }
 
 
@@ -39,17 +64,17 @@ class BeerBuddyViewModel: ObservableObject {
         self.state = .loading
         Task {
             do {
-                let buddy = await self.buddyFinder.getPerfectBuddy(for: self.character)
+                let info = await self.buddyFinder.getPerfectBuddy(for: self.character)
                 let screenInfo = ScreenInfo(
-                    firstCharacterImage: self.character.image,
-                    secondCharacterImage: buddy.image,
-                    firstCharacterName: self.character.name,
-                    secondCharacterName: buddy.name,
+                    firstCharacterImage: info.character.image,
+                    secondCharacterImage: info.buddy.image,
+                    firstCharacterName: info.character.name,
+                    secondCharacterName: info.buddy.name,
                     extraInfo: [
-                        "They can meet in Interdimentional Cable",
-                        "They have been together in 1 episode",
-                        "They met on Mar 17, 2014",
-                        "The last time they worked together was on Mar 17, 2014"
+                        "They can meet in \(info.location)",
+                        "They have been together in \(info.numberOfCommonEpisodes) episode",
+                        "They met on \(info.firstMetDate)",
+                        "The last time they worked together was on \(info.lastMetDate)"
                     ]
                 )
                 DispatchQueue.main.async {

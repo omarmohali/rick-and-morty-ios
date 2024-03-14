@@ -3,7 +3,9 @@ import CharactersUI
 
 extension RickAndMortyService.Service: CharactersLoader {
     public func getCharacters(nameFilter: String?) async throws -> [CharactersUICharacter] {
-        return try await self.getCharacters(nameFilter: nameFilter).map(CharactersUICharacter.init)
+        return try await self.getCharacters(
+            filters: .init(name: nameFilter)
+        ).map(CharactersUICharacter.init)
     }
 }
 
