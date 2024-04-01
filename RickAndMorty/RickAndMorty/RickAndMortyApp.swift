@@ -9,7 +9,7 @@ public typealias CharacterDTO = RickAndMortyService.Character
 
 @main
 struct RickAndMortyApp: App {
-    
+    // comment to test commit on git
     private let service: Service
     
     private let charactersClient: CharactersUIClient
